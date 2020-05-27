@@ -1,0 +1,230 @@
+{
+	"name": "SourceDataset_rbz",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MiDatapipelinePersistenceStorageSbox",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "ccd-asylum"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"extraction_date": {
+					"type": "string"
+				},
+				"case_metadata_event_id": {
+					"type": "integer"
+				},
+				"ce_case_data_id": {
+					"type": "integer"
+				},
+				"ce_created_date": {
+					"type": "integer"
+				},
+				"ce_case_type_id": {
+					"type": "string"
+				},
+				"ce_case_type_version": {
+					"type": "integer"
+				},
+				"ce_state_id": {
+					"type": "string"
+				},
+				"ce_data": {
+					"type": "object",
+					"properties": {
+						"appealType": {
+							"type": "string"
+						},
+						"hasNewMatters": {
+							"type": "string"
+						},
+						"appellantTitle": {
+							"type": "string"
+						},
+						"hasOtherAppeals": {
+							"type": "string"
+						},
+						"appellantAddress": {
+							"type": "object",
+							"properties": {
+								"County": {
+									"type": "string"
+								},
+								"Country": {
+									"type": "string"
+								},
+								"PostCode": {
+									"type": "string"
+								},
+								"PostTown": {
+									"type": "string"
+								},
+								"AddressLine1": {
+									"type": "string"
+								},
+								"AddressLine2": {
+									"type": "string"
+								},
+								"AddressLine3": {
+									"type": "string"
+								}
+							}
+						},
+						"appellantLastName": {
+							"type": "string"
+						},
+						"appellantGivenNames": {
+							"type": "string"
+						},
+						"appellantDateOfBirth": {
+							"type": "string"
+						},
+						"appellantNationalities": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"id": {
+										"type": "string"
+									},
+									"value": {
+										"type": "object",
+										"properties": {
+											"unused": {
+												"type": "string"
+											}
+										}
+									}
+								}
+							}
+						},
+						"homeOfficeDecisionDate": {
+							"type": "string"
+						},
+						"appealGroundsProtection": {
+							"type": "object",
+							"properties": {
+								"values": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									}
+								}
+							}
+						},
+						"legalRepReferenceNumber": {
+							"type": "string"
+						},
+						"appealGroundsHumanRights": {
+							"type": "object",
+							"properties": {
+								"values": {
+									"type": "array",
+									"items": {
+										"type": "string"
+									}
+								}
+							}
+						},
+						"appellantHasFixedAddress": {
+							"type": "string"
+						},
+						"homeOfficeReferenceNumber": {
+							"type": "string"
+						},
+						"sendDirectionActionAvailable": {
+							"type": "string"
+						},
+						"legalRepDeclaration": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						},
+						"appellantFamilyName": {
+							"type": "string"
+						},
+						"appealReferenceNumber": {
+							"type": "string"
+						},
+						"appealGroundsForDisplay": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						},
+						"appellantNameForDisplay": {
+							"type": "string"
+						},
+						"currentCaseStateVisibleToCaseOfficer": {
+							"type": "string"
+						},
+						"changeDirectionDueDateActionAvailable": {
+							"type": "string"
+						},
+						"currentCaseStateVisibleToLegalRepresentative": {
+							"type": "string"
+						},
+						"hearingCentre": {
+							"type": "string"
+						},
+						"legalRepresentativeName": {
+							"type": "string"
+						},
+						"legalRepresentativeDocuments": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"id": {
+										"type": "string"
+									},
+									"value": {
+										"type": "object",
+										"properties": {
+											"tag": {
+												"type": "string"
+											},
+											"document": {
+												"type": "object",
+												"properties": {
+													"document_url": {
+														"type": "string"
+													},
+													"document_filename": {
+														"type": "string"
+													},
+													"document_binary_url": {
+														"type": "string"
+													}
+												}
+											},
+											"description": {
+												"type": "string"
+											},
+											"dateUploaded": {
+												"type": "string"
+											}
+										}
+									}
+								}
+							}
+						},
+						"legalRepresentativeEmailAddress": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
