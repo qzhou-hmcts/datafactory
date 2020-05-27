@@ -1,0 +1,500 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "dataflow1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "dataflow1",
+						"type": "DataFlowReference"
+					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "MiDatapipelinePersistenceStorageSbox",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "dw-staging-sbox"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					}
+				}
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"modifiedDatetimeStart": {
+								"value": "@startOfDay(getPastTime(1,'day'))",
+								"type": "Expression"
+							},
+							"modifiedDatetimeEnd": {
+								"value": "@startOfHour(utcNow())",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "MiDatapipelinePersistenceStorageSbox",
+							"type": "LinkedServiceReference"
+						},
+						"path": "dw-staging-sbox",
+						"enableCompression": false
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['extraction_date']"
+								},
+								"sink": {
+									"type": "DateTime",
+									"ordinal": 1
+								}
+							},
+							{
+								"source": {
+									"path": "$['case_metadata_event_id']"
+								},
+								"sink": {
+									"type": "Int32",
+									"ordinal": 2
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_case_data_id']"
+								},
+								"sink": {
+									"type": "Int32",
+									"ordinal": 3
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_created_date']"
+								},
+								"sink": {
+									"type": "DateTime",
+									"ordinal": 4
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_case_type_id']"
+								},
+								"sink": {
+									"type": "Int32",
+									"ordinal": 5
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_case_type_version']"
+								},
+								"sink": {
+									"type": "Int32",
+									"ordinal": 6
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_state_id']"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 7
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appealType']"
+								},
+								"sink": {
+									"type": "Int32",
+									"ordinal": 8
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['hasNewMatters']"
+								},
+								"sink": {
+									"ordinal": 9
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appellantTitle']"
+								},
+								"sink": {
+									"ordinal": 10
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['hasOtherAppeals']"
+								},
+								"sink": {
+									"ordinal": 11
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appellantAddress']['County']"
+								},
+								"sink": {
+									"ordinal": 12
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appellantAddress']['Country']"
+								},
+								"sink": {
+									"ordinal": 13
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appellantAddress']['PostCode']"
+								},
+								"sink": {
+									"ordinal": 14
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appellantAddress']['PostTown']"
+								},
+								"sink": {
+									"ordinal": 15
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appellantAddress']['AddressLine1']"
+								},
+								"sink": {
+									"ordinal": 16
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appellantAddress']['AddressLine2']"
+								},
+								"sink": {
+									"ordinal": 17
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appellantAddress']['AddressLine3']"
+								},
+								"sink": {
+									"ordinal": 18
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appellantLastName']"
+								},
+								"sink": {
+									"ordinal": 19
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appellantGivenNames']"
+								},
+								"sink": {
+									"ordinal": 20
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appellantDateOfBirth']"
+								},
+								"sink": {
+									"ordinal": 21
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appellantNationalities'][0]['id']"
+								},
+								"sink": {
+									"ordinal": 22
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appellantNationalities'][0]['value']['unused']"
+								},
+								"sink": {
+									"ordinal": 23
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['homeOfficeDecisionDate']"
+								},
+								"sink": {
+									"ordinal": 24
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appealGroundsProtection']['values']"
+								},
+								"sink": {
+									"ordinal": 25
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['legalRepReferenceNumber']"
+								},
+								"sink": {
+									"ordinal": 26
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appealGroundsHumanRights']['values']"
+								},
+								"sink": {
+									"ordinal": 27
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appellantHasFixedAddress']"
+								},
+								"sink": {
+									"ordinal": 28
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['homeOfficeReferenceNumber']"
+								},
+								"sink": {
+									"ordinal": 29
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['sendDirectionActionAvailable']"
+								},
+								"sink": {
+									"ordinal": 30
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['legalRepDeclaration']"
+								},
+								"sink": {
+									"ordinal": 31
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appellantFamilyName']"
+								},
+								"sink": {
+									"ordinal": 32
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appealReferenceNumber']"
+								},
+								"sink": {
+									"ordinal": 33
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appealGroundsForDisplay']"
+								},
+								"sink": {
+									"ordinal": 34
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['appellantNameForDisplay']"
+								},
+								"sink": {
+									"ordinal": 35
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['currentCaseStateVisibleToCaseOfficer']"
+								},
+								"sink": {
+									"ordinal": 36
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['changeDirectionDueDateActionAvailable']"
+								},
+								"sink": {
+									"ordinal": 37
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['currentCaseStateVisibleToLegalRepresentative']"
+								},
+								"sink": {
+									"ordinal": 38
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['hearingCentre']"
+								},
+								"sink": {
+									"ordinal": 39
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['legalRepresentativeName']"
+								},
+								"sink": {
+									"ordinal": 40
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['legalRepresentativeDocuments'][0]['id']"
+								},
+								"sink": {
+									"ordinal": 41
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['legalRepresentativeDocuments'][0]['value']['tag']"
+								},
+								"sink": {
+									"ordinal": 42
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['legalRepresentativeDocuments'][0]['value']['document']['document_url']"
+								},
+								"sink": {
+									"ordinal": 43
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['legalRepresentativeDocuments'][0]['value']['document']['document_filename']"
+								},
+								"sink": {
+									"ordinal": 44
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['legalRepresentativeDocuments'][0]['value']['document']['document_binary_url']"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 45
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['legalRepresentativeDocuments'][0]['value']['description']"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 46
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['legalRepresentativeDocuments'][0]['value']['dateUploaded']"
+								},
+								"sink": {
+									"ordinal": 47
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['legalRepresentativeEmailAddress']"
+								},
+								"sink": {
+									"ordinal": 48
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_rbz",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Outputfiles",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
