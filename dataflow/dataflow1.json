@@ -1,0 +1,24 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "SourceDataset_xuq",
+						"type": "DatasetReference"
+					},
+					"name": "SoruceInput"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "DerivedColumn1"
+				}
+			],
+			"script": "source(output(\n\t\textraction_date as string,\n\t\tcase_metadata_event_id as string,\n\t\tce_case_data_id as string,\n\t\tce_created_date as string,\n\t\tce_case_type_id as string,\n\t\tce_case_type_version as string,\n\t\tce_state_id as string,\n\t\tce_data as (appealType as string, hasNewMatters as string, appellantTitle as string, hasOtherAppeals as string, appellantAddress as (County as string, Country as string, PostCode as string, PostTown as string, AddressLine1 as string, AddressLine2 as string, AddressLine3 as string), appellantLastName as string, appellantGivenNames as string, appellantDateOfBirth as string, appellantNationalities as (id as string, value as (unused as string))[], homeOfficeDecisionDate as string, appealGroundsProtection as (values as string[]), legalRepReferenceNumber as string, appealGroundsHumanRights as (values as string[]), appellantHasFixedAddress as string, homeOfficeReferenceNumber as string, sendDirectionActionAvailable as string, legalRepDeclaration as string[], appellantFamilyName as string, appealReferenceNumber as string, appealGroundsForDisplay as string[], appellantNameForDisplay as string, currentCaseStateVisibleToCaseOfficer as string, changeDirectionDueDateActionAvailable as string, currentCaseStateVisibleToLegalRepresentative as string, hearingCentre as string, legalRepresentativeName as string, legalRepresentativeDocuments as (id as string, value as (tag as string, document as (document_url as string, document_filename as string, document_binary_url as string), description as string, dateUploaded as string))[], legalRepresentativeEmailAddress as string)\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> SoruceInput\nSoruceInput derive(ce_data = ce_data.appealType) ~> DerivedColumn1"
+		}
+	}
+}
