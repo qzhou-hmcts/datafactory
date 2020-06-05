@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "DivoriceContainerSrc",
+						"referenceName": "DivorceContainerSrc",
 						"type": "DatasetReference"
 					},
 					"name": "Source01"

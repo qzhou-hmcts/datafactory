@@ -264,7 +264,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DivoriceContainerSrc",
+						"referenceName": "DivorceContainerSrc",
 						"type": "DatasetReference"
 					}
 				],
