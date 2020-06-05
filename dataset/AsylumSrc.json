@@ -1,0 +1,421 @@
+{
+	"name": "AsylumSrc",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "extraction_date",
+				"type": "varchar"
+			},
+			{
+				"name": "case_metadata_event_id",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "ce_case_data_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ce_created_date",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "ce_case_type_id",
+				"type": "varchar"
+			},
+			{
+				"name": "ce_case_type_version",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ce_state_id",
+				"type": "varchar"
+			},
+			{
+				"name": "ce_data",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_checklist",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appealType",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_newMatters",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_legalRepName",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_hasNewMatters",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appellantTitle",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_hasOtherAppeals",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_legalRepCompany",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appellantFamilyName",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appellantGivenNames",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appellantDateOfBirth",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appealReferenceNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appellantNationalities",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_homeOfficeDecisionDate",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appealGroundsForDisplay",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appealGroundsProtection",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appellantNameForDisplay",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_legalRepReferenceNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appealGroundsHumanRights",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appellantHasFixedAddress",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_homeOfficeReferenceNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_sendDirectionActionAvailable",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_currentCaseStateVisibleToCaseOfficer",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_changeDirectionDueDateActionAvailable",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_currentCaseStateVisibleToAdminOfficer",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_uploadAddendumEvidenceActionAvailable",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_currentCaseStateVisibleToHomeOfficeAll",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_currentCaseStateVisibleToHomeOfficeApc",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_currentCaseStateVisibleToHomeOfficePou",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_currentCaseStateVisibleToHomeOfficeLart",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_uploadAdditionalEvidenceActionAvailable",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_currentCaseStateVisibleToHomeOfficeGeneric",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_haveHearingAttendeesAndDurationBeenRecorded",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_currentCaseStateVisibleToLegalRepresentative",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_uploadAddendumEvidenceLegalRepActionAvailable",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_uploadAddendumEvidenceHomeOfficeActionAvailable",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_uploadAdditionalEvidenceHomeOfficeActionAvailable",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_hearingCentre",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_notificationsSent",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_legalRepDeclaration",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_submissionOutOfTime",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appealSubmissionDate",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_legalRepresentativeName",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_legalRepresentativeDocuments",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_legalRepresentativeEmailAddress",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_directions",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_uploadHomeOfficeBundleAvailable",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_respondentDocuments",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_uploadedHomeOfficeBundleDocs",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_caseBuildingReadyForSubmission",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_caseArgumentDocument",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_caseArgumentEvidence",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_caseArgumentAvailable",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_caseArgumentDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_respondentReviewAppealResponseAdded",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_uploadHomeOfficeAppealResponseActionAvailable",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appealResponseAvailable",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_amendResponseActionAvailable",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_reviewResponseActionAvailable",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_uploadedHomeOfficeAppealResponseDocs",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_hearingDocuments",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_listCaseHearingDate",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_ariaListingReference",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_listCaseHearingCentre",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_listCaseHearingLength",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_caseSummaryDocument",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_caseSummaryDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_scheduleOfIssuesAgreement",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_caseIntroductionDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_decisionAndReasonsAvailable",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_immigrationHistoryAgreement",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appellantCaseSummaryDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_agreedImmigrationHistoryDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appellantsAgreedScheduleOfIssuesDescription",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_addendumEvidenceDocuments",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appealGroundsRevocation",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_journeyType",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appellantAddress",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_subscriptions",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_anonymityOrder",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appellantRepresentative",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_respondentRepresentative",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_draftDecisionAndReasonsDocuments",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appealDate",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_appealDecision",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_isDecisionAllowed",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_isDocumentSignedToday",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_finalDecisionAndReasonsPdf",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_isFeeConsistentWithDecision",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_decisionAndReasonsCoverLetter",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_finalDecisionAndReasonsDocuments",
+				"type": "varchar"
+			},
+			{
+				"name": "cd_reviewHomeOfficeResponseByLegalRep",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ccd"
+		}
+	}
+}
