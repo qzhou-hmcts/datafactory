@@ -1,5 +1,5 @@
 {
-	"name": "DivoriceContainerSrc",
+	"name": "DivorceContainerSrc",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "MiDatapipelinePersistenceStorageSbox",
