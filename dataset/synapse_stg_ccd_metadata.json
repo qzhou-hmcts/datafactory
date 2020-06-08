@@ -1,5 +1,5 @@
 {
-	"name": "AzureSynapseAnalyticsTable1",
+	"name": "synapse_stg_ccd_metadata",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSynapseAnalytics1",

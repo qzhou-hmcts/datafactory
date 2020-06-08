@@ -29,7 +29,10 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*"
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
 						}
 					},
 					"sink": {
@@ -57,8 +60,8 @@
 									"path": "$['extraction_date']"
 								},
 								"sink": {
-									"name": "extraction_date",
-									"type": "String"
+									"name": "MD_INSERT_TIME",
+									"type": "DateTimeOffset"
 								}
 							},
 							{
@@ -66,8 +69,8 @@
 									"path": "$['case_metadata_event_id']"
 								},
 								"sink": {
-									"name": "case_metadata_event_id",
-									"type": "Int32"
+									"name": "CE_ID",
+									"type": "Decimal"
 								}
 							},
 							{
@@ -75,8 +78,8 @@
 									"path": "$['ce_case_data_id']"
 								},
 								"sink": {
-									"name": "ce_case_data_id",
-									"type": "Int32"
+									"name": "CE_CASE_DATA_ID",
+									"type": "Decimal"
 								}
 							},
 							{
@@ -84,8 +87,8 @@
 									"path": "$['ce_created_date']"
 								},
 								"sink": {
-									"name": "ce_created_date",
-									"type": "Int32"
+									"name": "CD_CREATED_DATE",
+									"type": "DateTime"
 								}
 							},
 							{
@@ -93,7 +96,7 @@
 									"path": "$['ce_case_type_id']"
 								},
 								"sink": {
-									"name": "ce_case_type_id",
+									"name": "CE_CASE_TYPE_ID",
 									"type": "String"
 								}
 							},
@@ -102,8 +105,8 @@
 									"path": "$['ce_case_type_version']"
 								},
 								"sink": {
-									"name": "ce_case_type_version",
-									"type": "Int32"
+									"name": "CE_CASE_TYPE_VERSION",
+									"type": "Decimal"
 								}
 							},
 							{
@@ -111,166 +114,218 @@
 									"path": "$['ce_state_id']"
 								},
 								"sink": {
-									"name": "ce_state_id",
+									"name": "CE_STATE_ID",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ce_data']['appealType']"
+									"path": "$['ce_state_name']"
 								},
 								"sink": {
-									"name": "cd_appealType",
+									"name": "CE_STATE_NAME",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ce_data']['hasNewMatters']"
+									"path": "$['ce_event_id']"
 								},
 								"sink": {
-									"name": "cd_hasNewMatters",
+									"name": "CE_EVENT_ID",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ce_data']['appellantTitle']"
+									"path": "$['ce_event_name']"
 								},
 								"sink": {
-									"name": "cd_appellantTitle",
+									"name": "CE_EVENT_NAME",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ce_data']['hasOtherAppeals']"
+									"path": "$['ce_user_id']"
 								},
 								"sink": {
-									"name": "cd_hasOtherAppeals",
+									"name": "USER_ID",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ce_data']['appellantGivenNames']"
+									"path": "$['ce_user_first_name']"
 								},
 								"sink": {
-									"name": "cd_appellantGivenNames",
+									"name": "USER_FIRST_NAME",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ce_data']['appellantDateOfBirth']"
+									"path": "$['ce_user_last_name']"
 								},
 								"sink": {
-									"name": "cd_appellantDateOfBirth",
+									"name": "USER_LAST_NAME",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ce_data']['appellantNationalities'][0]['value']['unused']"
-								},
-								"sink": {
-									"name": "cd_appellantNationalities",
-									"type": "String"
+									"path": "$['ce_data']['expiryDate']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ce_data']['appealGroundsProtection']['values']"
-								},
-								"sink": {
-									"name": "cd_appealGroundsProtection",
-									"type": "String"
+									"path": "$['ce_data']['caseMatches']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ce_data']['legalRepReferenceNumber']"
-								},
-								"sink": {
-									"name": "cd_legalRepReferenceNumber",
-									"type": "String"
+									"path": "$['ce_data']['numberOfCopies']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ce_data']['appealGroundsHumanRights']['values']"
-								},
-								"sink": {
-									"name": "cd_appealGroundsHumanRights",
-									"type": "String"
+									"path": "$['ce_data']['applicationType']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ce_data']['appellantHasFixedAddress']"
-								},
-								"sink": {
-									"name": "cd_appellantHasFixedAddress",
-									"type": "String"
+									"path": "$['ce_data']['deceasedAddress']['County']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ce_data']['homeOfficeReferenceNumber']"
-								},
-								"sink": {
-									"name": "cd_homeOfficeDecisionDate",
-									"type": "String"
+									"path": "$['ce_data']['deceasedAddress']['Country']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ce_data']['sendDirectionActionAvailable']"
-								},
-								"sink": {
-									"name": "cd_sendDirectionActionAvailable",
-									"type": "String"
+									"path": "$['ce_data']['deceasedAddress']['PostCode']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ce_data']['legalRepDeclaration']"
-								},
-								"sink": {
-									"name": "cd_legalRepDeclaration",
-									"type": "String"
+									"path": "$['ce_data']['deceasedAddress']['PostTown']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ce_data']['appellantFamilyName']"
-								},
-								"sink": {
-									"name": "cd_appellantFamilyName",
-									"type": "String"
+									"path": "$['ce_data']['deceasedAddress']['AddressLine1']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ce_data']['legalRepresentativeEmailAddress']"
-								},
-								"sink": {
-									"name": "cd_legalRepresentativeEmailAddress",
-									"type": "String"
+									"path": "$['ce_data']['deceasedAddress']['AddressLine2']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['deceasedAddress']['AddressLine3']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['deceasedSurname']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['applicantAddress']['County']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['applicantAddress']['Country']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['applicantAddress']['PostCode']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['applicantAddress']['PostTown']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['applicantAddress']['AddressLine1']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['applicantAddress']['AddressLine2']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['applicantAddress']['AddressLine3']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['applicantSurname']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['registryLocation']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['deceasedForenames']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['applicantForenames']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['deceasedDateOfDeath']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['deceasedAnyOtherNames']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['deceasedDateOfBirth']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_data']['applicantEmailAddress']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Column_1']"
 								}
 							}
-						]
+						],
+						"collectionReference": "",
+						"mapComplexValuesToString": false
 					}
 				},
 				"inputs": [
 					{
-						"referenceName": "DivorceContainerSrc",
+						"referenceName": "ccd_prob_ss_sbox",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_xuq",
+						"referenceName": "synapse_stg_ccd_metadata",
 						"type": "DatasetReference"
 					}
 				]
