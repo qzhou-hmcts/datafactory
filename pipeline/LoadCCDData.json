@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_xuq",
+				"name": "Copy_metadata",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
