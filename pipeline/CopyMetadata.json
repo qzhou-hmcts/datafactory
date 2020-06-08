@@ -138,7 +138,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureSynapseAnalyticsTable1",
+						"referenceName": "synapse_stg_ccd_metadata",
 						"type": "DatasetReference"
 					}
 				]

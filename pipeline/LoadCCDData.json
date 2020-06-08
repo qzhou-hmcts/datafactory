@@ -26,6 +26,15 @@
 				"typeProperties": {
 					"source": {
 						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "loadedTime",
+								"value": {
+									"value": "@pipeline().TriggerTime",
+									"type": "Expression"
+								}
+							}
+						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
@@ -174,142 +183,11 @@
 							},
 							{
 								"source": {
-									"path": "$['ce_data']['expiryDate']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['caseMatches']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['numberOfCopies']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['applicationType']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['deceasedAddress']['County']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['deceasedAddress']['Country']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['deceasedAddress']['PostCode']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['deceasedAddress']['PostTown']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['deceasedAddress']['AddressLine1']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['deceasedAddress']['AddressLine2']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['deceasedAddress']['AddressLine3']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['deceasedSurname']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['applicantAddress']['County']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['applicantAddress']['Country']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['applicantAddress']['PostCode']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['applicantAddress']['PostTown']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['applicantAddress']['AddressLine1']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['applicantAddress']['AddressLine2']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['applicantAddress']['AddressLine3']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['applicantSurname']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['registryLocation']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['deceasedForenames']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['applicantForenames']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['deceasedDateOfDeath']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['deceasedAnyOtherNames']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['deceasedDateOfBirth']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_data']['applicantEmailAddress']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['Column_1']"
+									"path": "$['loadedTime']"
+								},
+								"sink": {
+									"name": "LOADED_DATETIME",
+									"type": "DateTime"
 								}
 							}
 						],
