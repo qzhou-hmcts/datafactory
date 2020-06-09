@@ -1,0 +1,163 @@
+{
+	"name": "ccd_prob_ss_sbox",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MiDatapipelinePersistenceStorageSbox",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "ccd-standingsearch"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"extraction_date": {
+					"type": "string"
+				},
+				"case_metadata_event_id": {
+					"type": "integer"
+				},
+				"ce_case_data_id": {
+					"type": "integer"
+				},
+				"ce_created_date": {
+					"type": "integer"
+				},
+				"ce_case_type_id": {
+					"type": "string"
+				},
+				"ce_case_type_version": {
+					"type": "integer"
+				},
+				"ce_state_id": {
+					"type": "string"
+				},
+				"ce_state_name": {
+					"type": "null"
+				},
+				"ce_summary": {
+					"type": "null"
+				},
+				"ce_description": {
+					"type": "null"
+				},
+				"ce_event_id": {
+					"type": "null"
+				},
+				"ce_event_name": {
+					"type": "null"
+				},
+				"ce_user_id": {
+					"type": "null"
+				},
+				"ce_user_first_name": {
+					"type": "null"
+				},
+				"ce_user_last_name": {
+					"type": "null"
+				},
+				"ce_data": {
+					"type": "object",
+					"properties": {
+						"expiryDate": {
+							"type": "string"
+						},
+						"caseMatches": {
+							"type": "array"
+						},
+						"numberOfCopies": {
+							"type": "string"
+						},
+						"applicationType": {
+							"type": "string"
+						},
+						"deceasedAddress": {
+							"type": "object",
+							"properties": {
+								"County": {
+									"type": "string"
+								},
+								"Country": {
+									"type": "string"
+								},
+								"PostCode": {
+									"type": "string"
+								},
+								"PostTown": {
+									"type": "string"
+								},
+								"AddressLine1": {
+									"type": "string"
+								},
+								"AddressLine2": {
+									"type": "string"
+								},
+								"AddressLine3": {
+									"type": "string"
+								}
+							}
+						},
+						"deceasedSurname": {
+							"type": "string"
+						},
+						"applicantAddress": {
+							"type": "object",
+							"properties": {
+								"County": {
+									"type": "string"
+								},
+								"Country": {
+									"type": "string"
+								},
+								"PostCode": {
+									"type": "string"
+								},
+								"PostTown": {
+									"type": "string"
+								},
+								"AddressLine1": {
+									"type": "string"
+								},
+								"AddressLine2": {
+									"type": "string"
+								},
+								"AddressLine3": {
+									"type": "string"
+								}
+							}
+						},
+						"applicantSurname": {
+							"type": "string"
+						},
+						"registryLocation": {
+							"type": "string"
+						},
+						"deceasedForenames": {
+							"type": "string"
+						},
+						"applicantForenames": {
+							"type": "string"
+						},
+						"deceasedDateOfDeath": {
+							"type": "string"
+						},
+						"deceasedAnyOtherNames": {
+							"type": "string"
+						},
+						"deceasedDateOfBirth": {
+							"type": "string"
+						},
+						"applicantEmailAddress": {
+							"type": "null"
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,43 +1,29 @@
 {
-	"name": "LoadCCDData",
+	"name": "CopyMetadata",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_metadata",
+				"name": "Copy data1",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
 					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
+					"secureOutput": true,
+					"secureInput": true
 				},
-				"userProperties": [
-					{
-						"name": "Source",
-						"value": "ccd-asylum//"
-					},
-					{
-						"name": "Destination",
-						"value": "dbo.ccd"
-					}
-				],
+				"userProperties": [],
 				"typeProperties": {
 					"source": {
 						"type": "JsonSource",
-						"additionalColumns": [
-							{
-								"name": "loadedTime",
-								"value": {
-									"value": "@pipeline().TriggerTime",
-									"type": "Expression"
-								}
-							}
-						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
+							"modifiedDatetimeEnd": {
+								"value": "@utcnow()",
+								"type": "Expression"
+							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -53,14 +39,7 @@
 							"useTypeDefault": true
 						}
 					},
-					"enableStaging": true,
-					"stagingSettings": {
-						"linkedServiceName": {
-							"referenceName": "MiDatapipelinePersistenceStorageSbox",
-							"type": "LinkedServiceReference"
-						},
-						"path": "dw-staging-sbox"
-					},
+					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
@@ -96,7 +75,7 @@
 									"path": "$['ce_created_date']"
 								},
 								"sink": {
-									"name": "CD_CREATED_DATE",
+									"name": "CE_CREATED_DATE",
 									"type": "DateTime"
 								}
 							},
@@ -129,65 +108,21 @@
 							},
 							{
 								"source": {
-									"path": "$['ce_state_name']"
+									"path": "$['ce_state_id']"
 								},
 								"sink": {
-									"name": "CE_STATE_NAME",
-									"type": "String"
+									"name": "CD_REFERENCE",
+									"type": "Decimal"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ce_event_id']"
-								},
-								"sink": {
-									"name": "CE_EVENT_ID",
-									"type": "String"
+									"path": "$['Column_2']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ce_event_name']"
-								},
-								"sink": {
-									"name": "CE_EVENT_NAME",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_user_id']"
-								},
-								"sink": {
-									"name": "USER_ID",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_user_first_name']"
-								},
-								"sink": {
-									"name": "USER_FIRST_NAME",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_user_last_name']"
-								},
-								"sink": {
-									"name": "USER_LAST_NAME",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['loadedTime']"
-								},
-								"sink": {
-									"name": "LOADED_DATETIME",
-									"type": "DateTime"
+									"path": "$['Column_3']"
 								}
 							}
 						],
@@ -197,7 +132,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ccd_prob_ss_sbox",
+						"referenceName": "CcdMetadataSrc",
 						"type": "DatasetReference"
 					}
 				],
@@ -210,6 +145,5 @@
 			}
 		],
 		"annotations": []
-	},
-	"type": "Microsoft.DataFactory/factories/pipelines"
+	}
 }

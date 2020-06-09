@@ -1,0 +1,369 @@
+{
+	"name": "DivorceContainerSrc",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MiDatapipelinePersistenceStorageSbox",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "ccd-divorce"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"extraction_date": {
+					"type": "string"
+				},
+				"case_metadata_event_id": {
+					"type": "integer"
+				},
+				"ce_case_data_id": {
+					"type": "integer"
+				},
+				"ce_created_date": {
+					"type": "integer"
+				},
+				"ce_case_type_id": {
+					"type": "string"
+				},
+				"ce_case_type_version": {
+					"type": "integer"
+				},
+				"ce_state_id": {
+					"type": "string"
+				},
+				"ce_data": {
+					"type": "object",
+					"properties": {
+						"D8Cohort": {
+							"type": "string"
+						},
+						"createdDate": {
+							"type": "string"
+						},
+						"D8DivorceWho": {
+							"type": "string"
+						},
+						"D8Connections": {
+							"type": "object",
+							"properties": {
+								"A": {
+									"type": "string"
+								},
+								"C": {
+									"type": "string"
+								}
+							}
+						},
+						"D8DivorceUnit": {
+							"type": "string"
+						},
+						"D8MarriageDate": {
+							"type": "string"
+						},
+						"D8caseReference": {
+							"type": "string"
+						},
+						"D8FinancialOrder": {
+							"type": "string"
+						},
+						"D8PetitionerEmail": {
+							"type": "string"
+						},
+						"D8DivorceClaimFrom": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						},
+						"D8LegalProceedings": {
+							"type": "string"
+						},
+						"D8ReasonForDivorce": {
+							"type": "string"
+						},
+						"D8ScreenHasPrinter": {
+							"type": "string"
+						},
+						"D8StatementOfTruth": {
+							"type": "string"
+						},
+						"D8DivorceCostsClaim": {
+							"type": "string"
+						},
+						"D8FinancialOrderFor": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						},
+						"D8MarriageCanDivorce": {
+							"type": "string"
+						},
+						"D8PetitionerLastName": {
+							"type": "string"
+						},
+						"D8RespondentLastName": {
+							"type": "string"
+						},
+						"D8PetitionerFirstName": {
+							"type": "string"
+						},
+						"D8RespondentFirstName": {
+							"type": "string"
+						},
+						"D8HelpWithFeesNeedHelp": {
+							"type": "string"
+						},
+						"D8PetitionerHomeAddress": {
+							"type": "object",
+							"properties": {
+								"PostCode": {
+									"type": "string"
+								}
+							}
+						},
+						"D8PetitionerPhoneNumber": {
+							"type": "string"
+						},
+						"D8RespondentHomeAddress": {
+							"type": "object",
+							"properties": {
+								"PostCode": {
+									"type": "string"
+								}
+							}
+						},
+						"D8ScreenHasMarriageCert": {
+							"type": "string"
+						},
+						"D8DerivedStatementOfCase": {
+							"type": "string"
+						},
+						"D8JurisdictionConnection": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						},
+						"D8MarriagePetitionerName": {
+							"type": "string"
+						},
+						"D8MarriageRespondentName": {
+							"type": "string"
+						},
+						"D8LegalProceedingsDetails": {
+							"type": "string"
+						},
+						"D8LegalProceedingsRelated": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						},
+						"D8MarriageIsSameSexCouple": {
+							"type": "string"
+						},
+						"D8ScreenHasMarriageBroken": {
+							"type": "string"
+						},
+						"D8InferredPetitionerGender": {
+							"type": "string"
+						},
+						"D8InferredRespondentGender": {
+							"type": "string"
+						},
+						"D8PetitionerNameChangedHow": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						},
+						"D8ClaimsCostsAppliedForFees": {
+							"type": "string"
+						},
+						"D8HelpWithFeesAppliedForFees": {
+							"type": "string"
+						},
+						"D8JurisdictionConfidentLegal": {
+							"type": "string"
+						},
+						"D8ScreenHasRespondentAddress": {
+							"type": "string"
+						},
+						"D8HelpWithFeesReferenceNumber": {
+							"type": "string"
+						},
+						"D8ReasonForDivorceHasMarriage": {
+							"type": "string"
+						},
+						"D8DerivedPetitionerHomeAddress": {
+							"type": "string"
+						},
+						"D8DerivedRespondentCurrentName": {
+							"type": "string"
+						},
+						"D8DerivedRespondentHomeAddress": {
+							"type": "string"
+						},
+						"D8ReasonForDivorceLimitReasons": {
+							"type": "string"
+						},
+						"D8ReasonForDivorceShowAdultery": {
+							"type": "string"
+						},
+						"D8RespondentLivesAtLastAddress": {
+							"type": "string"
+						},
+						"D8ReasonForDivorceShowDesertion": {
+							"type": "string"
+						},
+						"D8DerivedRespondentSolicitorAddr": {
+							"type": "string"
+						},
+						"D8LivingArrangementsLiveTogether": {
+							"type": "string"
+						},
+						"D8ReasonForDivorceEnableAdultery": {
+							"type": "string"
+						},
+						"D8JurisdictionPetitionerResidence": {
+							"type": "string"
+						},
+						"D8JurisdictionRespondentResidence": {
+							"type": "string"
+						},
+						"D8PetitionerCorrespondenceAddress": {
+							"type": "object",
+							"properties": {
+								"PostCode": {
+									"type": "string"
+								}
+							}
+						},
+						"D8ReasonForDivorceAdulteryIsNamed": {
+							"type": "string"
+						},
+						"D8RespondentCorrespondenceAddress": {
+							"type": "object",
+							"properties": {
+								"PostCode": {
+									"type": "string"
+								}
+							}
+						},
+						"D8DerivedPetitionerCurrentFullName": {
+							"type": "string"
+						},
+						"D8ReasonForDivorceBehaviourDetails": {
+							"type": "string"
+						},
+						"D8ReasonForDivorceClaimingAdultery": {
+							"type": "string"
+						},
+						"D8DerivedRespondentSolicitorDetails": {
+							"type": "string"
+						},
+						"D8DerivedPetitionerCorrespondenceAddr": {
+							"type": "string"
+						},
+						"D8DerivedRespondentCorrespondenceAddr": {
+							"type": "string"
+						},
+						"D8LivingArrangementsLastLivedTogether": {
+							"type": "string"
+						},
+						"D8PetitionerContactDetailsConfidential": {
+							"type": "string"
+						},
+						"D8PetitionerNameDifferentToMarriageCert": {
+							"type": "string"
+						},
+						"D8DerivedLivingArrangementsLastLivedAddr": {
+							"type": "string"
+						},
+						"D8PetitionerCorrespondenceUseHomeAddress": {
+							"type": "string"
+						},
+						"D8ReasonForDivorceClaiming5YearSeparatio": {
+							"type": "string"
+						},
+						"D8ReasonForDivorceShowFiveYearsSeparatio": {
+							"type": "string"
+						},
+						"D8ReasonForDivorceShowTwoYearsSeparation": {
+							"type": "string"
+						},
+						"D8ReasonForDivorceShowUnreasonableBehavi": {
+							"type": "string"
+						},
+						"D8RespondentCorrespondenceUseHomeAddress": {
+							"type": "string"
+						},
+						"CoRespLetterHolderId": {
+							"type": "string"
+						},
+						"Payments": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"id": {
+										"type": "string"
+									},
+									"value": {
+										"type": "object",
+										"properties": {
+											"PaymentDate": {
+												"type": "string"
+											},
+											"PaymentFeeId": {
+												"type": "string"
+											},
+											"PaymentAmount": {
+												"type": "string"
+											},
+											"PaymentSiteId": {
+												"type": "string"
+											},
+											"PaymentStatus": {
+												"type": "string"
+											},
+											"PaymentChannel": {
+												"type": "string"
+											},
+											"PaymentReference": {
+												"type": "string"
+											},
+											"PaymentTransactionId": {
+												"type": "string"
+											}
+										}
+									}
+								}
+							}
+						},
+						"RespondentContactDetailsConfidential": {
+							"type": "string"
+						},
+						"CoRespEmailAddress": {
+							"type": "string"
+						},
+						"CoRespLinkedToCase": {
+							"type": "string"
+						},
+						"CoRespLinkedToCaseDate": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

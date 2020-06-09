@@ -1,0 +1,101 @@
+{
+	"name": "synapse_stg_ccd_metadata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "MD_INSERT_TIME",
+				"type": "datetimeoffset",
+				"scale": 5
+			},
+			{
+				"name": "CE_ID",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "CE_CASE_DATA_ID",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "CE_CREATED_DATE",
+				"type": "datetime2",
+				"scale": 3
+			},
+			{
+				"name": "CE_CASE_TYPE_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "CE_CASE_TYPE_VERSION",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "CE_EVENT_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "CE_EVENT_NAME",
+				"type": "varchar"
+			},
+			{
+				"name": "CE_STATE_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "CE_STATE_NAME",
+				"type": "varchar"
+			},
+			{
+				"name": "CD_CREATED_DATE",
+				"type": "datetime2",
+				"scale": 3
+			},
+			{
+				"name": "CD_LAST_MODIFIED",
+				"type": "datetime2",
+				"scale": 3
+			},
+			{
+				"name": "CD_JURISDICTION",
+				"type": "varchar"
+			},
+			{
+				"name": "CD_REFERENCE",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "LOADED_DATETIME",
+				"type": "date"
+			},
+			{
+				"name": "USER_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "USER_FIRST_NAME",
+				"type": "varchar"
+			},
+			{
+				"name": "USER_LAST_NAME",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "STG",
+			"table": "STG_CCD_METADATA"
+		}
+	}
+}
