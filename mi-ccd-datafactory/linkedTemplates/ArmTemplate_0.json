@@ -2705,6 +2705,9 @@
 									"type": "AzureBlobStorageReadSettings",
 									"recursive": true,
 									"wildcardFileName": "*"
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
 								}
 							},
 							"sink": {
@@ -2876,7 +2879,8 @@
 								],
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
-									"fileListPath": "ccd-standingsearch/*",
+									"recursive": true,
+									"wildcardFileName": "*",
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {

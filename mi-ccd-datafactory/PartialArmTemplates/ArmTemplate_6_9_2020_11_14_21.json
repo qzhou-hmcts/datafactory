@@ -1,0 +1,234 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "mi-ccd-datafactory"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/LoadCCDData')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy_metadata",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "ccd-asylum//"
+							},
+							{
+								"name": "Destination",
+								"value": "dbo.ccd"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"additionalColumns": [
+									{
+										"name": "loadedTime",
+										"value": {
+											"value": "@pipeline().TriggerTime",
+											"type": "Expression"
+										}
+									}
+								],
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"wildcardFileName": "*",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"sink": {
+								"type": "SqlDWSink",
+								"allowPolyBase": true,
+								"polyBaseSettings": {
+									"rejectValue": 0,
+									"rejectType": "value",
+									"useTypeDefault": true
+								}
+							},
+							"enableStaging": true,
+							"stagingSettings": {
+								"linkedServiceName": {
+									"referenceName": "MiDatapipelinePersistenceStorageSbox",
+									"type": "LinkedServiceReference"
+								},
+								"path": "dw-staging-sbox"
+							},
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$['extraction_date']"
+										},
+										"sink": {
+											"name": "MD_INSERT_TIME",
+											"type": "DateTimeOffset"
+										}
+									},
+									{
+										"source": {
+											"path": "$['case_metadata_event_id']"
+										},
+										"sink": {
+											"name": "CE_ID",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "$['ce_case_data_id']"
+										},
+										"sink": {
+											"name": "CE_CASE_DATA_ID",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "$['ce_created_date']"
+										},
+										"sink": {
+											"name": "CD_CREATED_DATE",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"path": "$['ce_case_type_id']"
+										},
+										"sink": {
+											"name": "CE_CASE_TYPE_ID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['ce_case_type_version']"
+										},
+										"sink": {
+											"name": "CE_CASE_TYPE_VERSION",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "$['ce_state_id']"
+										},
+										"sink": {
+											"name": "CE_STATE_ID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['ce_state_name']"
+										},
+										"sink": {
+											"name": "CE_STATE_NAME",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['ce_event_id']"
+										},
+										"sink": {
+											"name": "CE_EVENT_ID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['ce_event_name']"
+										},
+										"sink": {
+											"name": "CE_EVENT_NAME",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['ce_user_id']"
+										},
+										"sink": {
+											"name": "USER_ID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['ce_user_first_name']"
+										},
+										"sink": {
+											"name": "USER_FIRST_NAME",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['ce_user_last_name']"
+										},
+										"sink": {
+											"name": "USER_LAST_NAME",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['loadedTime']"
+										},
+										"sink": {
+											"name": "LOADED_DATETIME",
+											"type": "DateTime"
+										}
+									}
+								],
+								"collectionReference": "",
+								"mapComplexValuesToString": false
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "ccd_prob_ss_sbox",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "synapse_stg_ccd_metadata",
+								"type": "DatasetReference"
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": []
+		}
+	]
+}
