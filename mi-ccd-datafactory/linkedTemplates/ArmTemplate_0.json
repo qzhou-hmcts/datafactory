@@ -2876,7 +2876,7 @@
 								],
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
-									"fileListPath": "**",
+									"fileListPath": "ccd-standingsearch/*",
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
