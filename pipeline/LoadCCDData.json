@@ -70,8 +70,7 @@
 									"path": "$['extraction_date']"
 								},
 								"sink": {
-									"name": "MD_INSERT_TIME",
-									"type": "DateTimeOffset"
+									"name": "MD_INSERT_TIME"
 								}
 							},
 							{
