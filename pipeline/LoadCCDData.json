@@ -37,7 +37,7 @@
 						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
+							"fileListPath": "**",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
