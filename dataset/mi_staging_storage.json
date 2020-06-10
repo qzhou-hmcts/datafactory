@@ -1,0 +1,21 @@
+{
+	"name": "mi_staging_storage",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MiDatapipelinePersistenceStorageSbox",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"containerName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation"
+			}
+		}
+	}
+}
