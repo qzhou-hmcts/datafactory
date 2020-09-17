@@ -1,0 +1,10 @@
+{
+	"name": "mi_sbox_keyvault",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://mi-vault-sbox.vault.azure.net/"
+		}
+	}
+}
