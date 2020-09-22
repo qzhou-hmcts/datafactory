@@ -28,8 +28,10 @@
 						"type": "JsonSource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"wildcardFileName": "*"
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
 						}
 					},
 					"sink": {
@@ -138,13 +140,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceDataset_rbz",
+						"referenceName": "CcdMetadataSrc",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_rbz",
+						"referenceName": "synapse_stg_ccd_metadata",
 						"type": "DatasetReference"
 					}
 				]
