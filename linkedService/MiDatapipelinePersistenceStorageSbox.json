@@ -1,12 +1,12 @@
 {
 	"name": "MiDatapipelinePersistenceStorageSbox",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "AzureBlobStorage",
 		"typeProperties": {
-			"connectionString": "DefaultEndpointsProtocol=https;AccountName=mipersistentsbox;EndpointSuffix=core.windows.net;",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIk1JLUNDRC1EQVRBRkFDVE9SWV8zY2Q4NmI0Ni0zNjI3LTQ5M2UtOWI0Ny1lN2QzZjY4ODYxMWYiDQp9"
+			"serviceEndpoint": "https://mipersistentsbox.blob.core.windows.net",
+			"accountKind": "StorageV2"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }
