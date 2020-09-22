@@ -15,6 +15,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'MiDatapipelinePersistenceStorageSbox'"
 		},
+		"linkedService1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'linkedService1'"
+		},
+		"mi_sbox_keyvault_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://mi-vault-sbox.vault.azure.net/"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -29,7 +37,7 @@
 	},
 	"resources": [
 		{
-			"name": "ArmTemplate_0",
+			"name": "mi-ccd-datafactory_ArmTemplate_0",
 			"type": "Microsoft.Resources/deployments",
 			"apiVersion": "2018-02-01",
 			"properties": {
@@ -47,6 +55,12 @@
 					},
 					"MiDatapipelinePersistenceStorageSbox_connectionString": {
 						"value": "[parameters('MiDatapipelinePersistenceStorageSbox_connectionString')]"
+					},
+					"linkedService1_connectionString": {
+						"value": "[parameters('linkedService1_connectionString')]"
+					},
+					"mi_sbox_keyvault_properties_typeProperties_baseUrl": {
+						"value": "[parameters('mi_sbox_keyvault_properties_typeProperties_baseUrl')]"
 					}
 				}
 			},

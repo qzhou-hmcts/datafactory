@@ -10,6 +10,12 @@
 		},
 		"MiDatapipelinePersistenceStorageSbox_connectionString": {
 			"value": ""
+		},
+		"linkedService1_connectionString": {
+			"value": ""
+		},
+		"mi_sbox_keyvault_properties_typeProperties_baseUrl": {
+			"value": "https://mi-vault-sbox.vault.azure.net/"
 		}
 	}
 }
