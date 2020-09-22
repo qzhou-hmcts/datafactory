@@ -1,0 +1,17 @@
+{
+	"name": "mi_persistent_storage",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "mi_keyvault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "mi-staging-storage-connection-string"
+			}
+		}
+	}
+}
