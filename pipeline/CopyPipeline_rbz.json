@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_rbz",
+				"name": "Copy_rbz_rename",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -30,6 +30,9 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"wildcardFileName": "*"
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
 						}
 					},
 					"sink": {
