@@ -2,7 +2,7 @@
 	"name": "CcdMetadataSrc",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "MiDatapipelinePersistenceStorageSbox",
+			"referenceName": "mi_persistence_storage_mi",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
