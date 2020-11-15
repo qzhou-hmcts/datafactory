@@ -1,0 +1,12 @@
+{
+	"name": "MIPersistenceStorage",
+	"properties": {
+		"description": "SDP persistence storage connection",
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://mipersistenttest.blob.core.windows.net",
+			"accountKind": "StorageV2"
+		}
+	}
+}
