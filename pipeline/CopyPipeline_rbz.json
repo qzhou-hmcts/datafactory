@@ -29,7 +29,11 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*"
+							"wildcardFolderPath": "*",
+							"wildcardFileName": "*.json"
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
 						}
 					},
 					"sink": {
@@ -41,14 +45,7 @@
 							"useTypeDefault": true
 						}
 					},
-					"enableStaging": true,
-					"stagingSettings": {
-						"linkedServiceName": {
-							"referenceName": "MiDatapipelinePersistenceStorageSbox",
-							"type": "LinkedServiceReference"
-						},
-						"path": "dw-staging-sbox"
-					},
+					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
@@ -138,13 +135,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceDataset_rbz",
+						"referenceName": "CcdMetadataSrc",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_rbz",
+						"referenceName": "synapse_stg_ccd_metadata",
 						"type": "DatasetReference"
 					}
 				]

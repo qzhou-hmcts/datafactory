@@ -1,0 +1,11 @@
+{
+	"name": "mi_persistence_storage_mi",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://mipersistenttest.blob.core.windows.net",
+			"accountKind": "StorageV2"
+		}
+	}
+}

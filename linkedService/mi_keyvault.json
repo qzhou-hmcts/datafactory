@@ -1,5 +1,5 @@
 {
-	"name": "mi_sbox_keyvault",
+	"name": "mi_keyvault",
 	"properties": {
 		"annotations": [],
 		"type": "AzureKeyVault",
