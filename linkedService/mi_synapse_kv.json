@@ -1,5 +1,5 @@
 {
-	"name": "AzureSynapseAnalytics1",
+	"name": "mi_synapse_kv",
 	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
