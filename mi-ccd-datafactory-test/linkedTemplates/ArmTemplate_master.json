@@ -1,0 +1,70 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "mi-ccd-datafactory-test"
+		},
+		"MI_synapse_mi_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'MI_synapse_mi'"
+		},
+		"mi_keyvault_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://mi-vault-test.vault.azure.net/"
+		},
+		"mi_persistence_storage_mi_properties_typeProperties_serviceEndpoint": {
+			"type": "string",
+			"defaultValue": "https://mipersistenttest.blob.core.windows.net"
+		},
+		"mi_persistent_storage_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "mi-staging-storage-connection-string"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "mi-ccd-datafactory-test_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"MI_synapse_mi_connectionString": {
+						"value": "[parameters('MI_synapse_mi_connectionString')]"
+					},
+					"mi_keyvault_properties_typeProperties_baseUrl": {
+						"value": "[parameters('mi_keyvault_properties_typeProperties_baseUrl')]"
+					},
+					"mi_persistence_storage_mi_properties_typeProperties_serviceEndpoint": {
+						"value": "[parameters('mi_persistence_storage_mi_properties_typeProperties_serviceEndpoint')]"
+					},
+					"mi_persistent_storage_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('mi_persistent_storage_properties_typeProperties_connectionString_secretName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

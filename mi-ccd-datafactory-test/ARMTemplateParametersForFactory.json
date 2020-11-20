@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "mi-ccd-datafactory-test"
+		},
+		"MI_synapse_mi_connectionString": {
+			"value": ""
+		},
+		"mi_keyvault_properties_typeProperties_baseUrl": {
+			"value": "https://mi-vault-test.vault.azure.net/"
+		},
+		"mi_persistence_storage_mi_properties_typeProperties_serviceEndpoint": {
+			"value": "https://mipersistenttest.blob.core.windows.net"
+		},
+		"mi_persistent_storage_properties_typeProperties_connectionString_secretName": {
+			"value": "mi-staging-storage-connection-string"
+		}
+	}
+}
