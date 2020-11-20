@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference",
 			"parameters": {
 				"identity": "mi-ccd-datafactory-test",
-				"env": "sbox"
+				"env": "test"
 			}
 		},
 		"annotations": [],
