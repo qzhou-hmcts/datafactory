@@ -2,16 +2,6 @@
 	"name": "MI_synapse_mi",
 	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
-		"parameters": {
-			"identity": {
-				"type": "string",
-				"defaultValue": "mi-ccd-datafactory-test"
-			},
-			"env": {
-				"type": "string",
-				"defaultValue": "sbox"
-			}
-		},
 		"annotations": [],
 		"type": "AzureSqlDW",
 		"typeProperties": {
