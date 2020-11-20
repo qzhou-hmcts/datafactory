@@ -6,12 +6,6 @@
 			"referenceName": "mi_persistent_storage",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"file": {
-				"type": "string",
-				"defaultValue": "*"
-			}
-		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {

@@ -22,25 +22,73 @@
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"prefix": "*.jsonl"
+							"wildcardFileName": "*.jsonl"
 						},
 						"formatSettings": {
 							"type": "JsonReadSettings"
 						}
 					},
 					"sink": {
-						"type": "SqlDWSink",
-						"allowPolyBase": true,
-						"polyBaseSettings": {
-							"rejectValue": 0,
-							"rejectType": "value",
-							"useTypeDefault": true
-						}
+						"type": "SqlDWSink"
 					},
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
+							{
+								"source": {
+									"path": "$['id']"
+								},
+								"sink": {
+									"name": "id",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ccd_reference']"
+								},
+								"sink": {
+									"name": "ccd_reference",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['date_created']"
+								},
+								"sink": {
+									"name": "date_created",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['exception_record_reference']"
+								},
+								"sink": {
+									"name": "exception_record_reference",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['date_updated']"
+								},
+								"sink": {
+									"name": "data_updated",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['envelope_id']"
+								},
+								"sink": {
+									"name": "envelpe_id",
+									"type": "Decimal"
+								}
+							},
 							{
 								"source": {
 									"path": "$['extraction_date']"
@@ -49,39 +97,6 @@
 									"name": "extraction_date",
 									"type": "DateTime"
 								}
-							},
-							{
-								"source": {
-									"path": "$['case_metadata_event_id']"
-								},
-								"sink": {
-									"name": ""
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_case_data_id']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_created_date']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_case_type_id']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_case_type_version']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ce_state_id']"
-								}
 							}
 						]
 					}
@@ -89,10 +104,7 @@
 				"inputs": [
 					{
 						"referenceName": "paymen_bs_envelope_src",
-						"type": "DatasetReference",
-						"parameters": {
-							"file": "*"
-						}
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
