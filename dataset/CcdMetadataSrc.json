@@ -2,16 +2,25 @@
 	"name": "CcdMetadataSrc",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "mi_persistence_storage_mi",
+			"referenceName": "mi_persistent_storage",
 			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"file": {
+				"type": "string",
+				"defaultValue": "*"
+			}
 		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "*",
-				"container": "ccdmetadata"
+				"fileName": {
+					"value": "@dataset().file",
+					"type": "Expression"
+				},
+				"container": "payment-bs-envelope"
 			}
 		},
 		"schema": {
