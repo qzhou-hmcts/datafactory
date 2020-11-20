@@ -1,0 +1,112 @@
+{
+	"name": "load_payment_bs_envelope",
+	"properties": {
+		"description": "Pipeline to load payment bulk envelope into synapse",
+		"activities": [
+			{
+				"name": "copy_payment_bs_envelope",
+				"description": "copy_payment_bs_envelope",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"prefix": "*.jsonl"
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['extraction_date']"
+								},
+								"sink": {
+									"name": "extraction_date",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['case_metadata_event_id']"
+								},
+								"sink": {
+									"name": ""
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_case_data_id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_created_date']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_case_type_id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_case_type_version']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ce_state_id']"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "paymen_bs_envelope_src",
+						"type": "DatasetReference",
+						"parameters": {
+							"file": "*"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "synapse_payment",
+						"type": "DatasetReference",
+						"parameters": {
+							"schema": "dbo",
+							"table": "table"
+						}
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}

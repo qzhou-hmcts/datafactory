@@ -1,0 +1,59 @@
+{
+	"name": "synapse_payment",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "mi_synapse_kv",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"schema": {
+				"type": "string",
+				"defaultValue": "dbo"
+			},
+			"table": {
+				"type": "string",
+				"defaultValue": "table"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "ccd_reference",
+				"type": "varchar"
+			},
+			{
+				"name": "date_created",
+				"type": "date"
+			},
+			{
+				"name": "exception_record_reference",
+				"type": "varchar"
+			},
+			{
+				"name": "data_updated",
+				"type": "date"
+			},
+			{
+				"name": "envelpe_id",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "extraction_date",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "payment",
+			"table": "BulkEnvelopCase"
+		}
+	}
+}
