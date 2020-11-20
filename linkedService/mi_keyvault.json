@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "AzureKeyVault",
 		"typeProperties": {
-			"baseUrl": "https://mi-vault-sbox.vault.azure.net/"
+			"baseUrl": "https://mi-vault-test.vault.azure.net/"
 		}
 	}
 }

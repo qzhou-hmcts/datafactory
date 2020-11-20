@@ -2,10 +2,11 @@
 	"name": "synapse_stg_ccd_metadata",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureSynapseAnalytics1",
+			"referenceName": "MI_synapse_mi",
 			"type": "LinkedServiceReference",
 			"parameters": {
-				"identity": "mi-ccd-datafactory-test"
+				"identity": "mi-ccd-datafactory-test",
+				"env": "sbox"
 			}
 		},
 		"annotations": [],
