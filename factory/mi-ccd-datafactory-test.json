@@ -1,4 +1,12 @@
 {
 	"name": "mi-ccd-datafactory-test",
+	"properties": {
+		"globalParameters": {
+			"environment": {
+				"type": "string",
+				"value": "sbox"
+			}
+		}
+	},
 	"location": "uksouth"
 }
