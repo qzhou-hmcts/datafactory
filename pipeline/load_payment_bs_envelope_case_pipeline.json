@@ -52,6 +52,15 @@
 							},
 							{
 								"source": {
+									"path": "$['ccd_reference']"
+								},
+								"sink": {
+									"name": "ccd_reference",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "$['date_created']"
 								},
 								"sink": {
@@ -61,11 +70,29 @@
 							},
 							{
 								"source": {
+									"path": "$['exception_record_reference']"
+								},
+								"sink": {
+									"name": "exception_record_reference",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "$['date_updated']"
 								},
 								"sink": {
 									"name": "data_updated",
 									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['envelope_id']"
+								},
+								"sink": {
+									"name": "envelpe_id",
+									"type": "Decimal"
 								}
 							},
 							{
