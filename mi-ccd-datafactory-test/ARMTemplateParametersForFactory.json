@@ -8,6 +8,9 @@
 		"MI_synapse_mi_connectionString": {
 			"value": ""
 		},
+		"mi_synapse_kv_connectionString": {
+			"value": ""
+		},
 		"mi_keyvault_properties_typeProperties_baseUrl": {
 			"value": "https://mi-vault-test.vault.azure.net/"
 		},

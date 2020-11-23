@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'MI_synapse_mi'"
 		},
+		"mi_synapse_kv_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'mi_synapse_kv'"
+		},
 		"mi_keyvault_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://mi-vault-test.vault.azure.net/"
@@ -52,6 +56,9 @@
 					},
 					"MI_synapse_mi_connectionString": {
 						"value": "[parameters('MI_synapse_mi_connectionString')]"
+					},
+					"mi_synapse_kv_connectionString": {
+						"value": "[parameters('mi_synapse_kv_connectionString')]"
 					},
 					"mi_keyvault_properties_typeProperties_baseUrl": {
 						"value": "[parameters('mi_keyvault_properties_typeProperties_baseUrl')]"

@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'MI_synapse_mi'"
 		},
+		"mi_synapse_kv_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'mi_synapse_kv'"
+		},
 		"mi_keyvault_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://mi-vault-test.vault.azure.net/"
@@ -33,16 +37,6 @@
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"parameters": {
-					"identity": {
-						"type": "string",
-						"defaultValue": "mi-ccd-datafactory-test"
-					},
-					"env": {
-						"type": "string",
-						"defaultValue": "sbox"
-					}
-				},
 				"annotations": [],
 				"type": "AzureSqlDW",
 				"typeProperties": {
@@ -101,21 +95,96 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/synapse_stg_ccd_metadata')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "MI_synapse_mi",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlDWTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "data",
+					"table": "change"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/MI_synapse_mi')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/mi_persistent_storage')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "mi_keyvault",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "[parameters('mi_persistent_storage_properties_typeProperties_connectionString_secretName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/mi_keyvault')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/mi_synapse_kv')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDW",
+				"typeProperties": {
+					"connectionString": "[parameters('mi_synapse_kv_connectionString')]",
+					"password": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "mi_keyvault",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "mi-datawarehouse-server-admin-password"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/mi_keyvault')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/CcdMetadataSrc')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "mi_persistence_storage_mi",
+					"referenceName": "mi_persistent_storage",
 					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"file": {
+						"type": "string",
+						"defaultValue": "*"
+					}
 				},
 				"annotations": [],
 				"type": "Json",
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "*",
-						"container": "ccdmetadata"
+						"fileName": {
+							"value": "@dataset().file",
+							"type": "Expression"
+						},
+						"container": "payment-bs-envelope"
 					}
 				},
 				"schema": {
@@ -146,54 +215,7 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/mi_persistence_storage_mi')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/synapse_stg_ccd_metadata')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "MI_synapse_mi",
-					"type": "LinkedServiceReference",
-					"parameters": {
-						"identity": "mi-ccd-datafactory-test",
-						"env": "test"
-					}
-				},
-				"annotations": [],
-				"type": "AzureSqlDWTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "STG",
-					"table": "STG_CCD_METADATA"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/MI_synapse_mi')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/mi_persistent_storage')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": {
-						"type": "AzureKeyVaultSecret",
-						"store": {
-							"referenceName": "mi_keyvault",
-							"type": "LinkedServiceReference"
-						},
-						"secretName": "[parameters('mi_persistent_storage_properties_typeProperties_connectionString_secretName')]"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/mi_keyvault')]"
+				"[concat(variables('factoryId'), '/linkedServices/mi_persistent_storage')]"
 			]
 		}
 	]
