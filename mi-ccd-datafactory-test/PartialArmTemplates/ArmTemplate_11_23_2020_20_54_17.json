@@ -6,26 +6,6 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "mi-ccd-datafactory-test"
-		},
-		"MI_synapse_mi_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'MI_synapse_mi'"
-		},
-		"mi_synapse_kv_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'mi_synapse_kv'"
-		},
-		"mi_keyvault_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://mi-vault-test.vault.azure.net/"
-		},
-		"mi_persistence_storage_mi_properties_typeProperties_serviceEndpoint": {
-			"type": "string",
-			"defaultValue": "https://mipersistenttest.blob.core.windows.net"
-		},
-		"mi_persistent_storage_properties_typeProperties_connectionString_secretName": {
-			"type": "string",
-			"defaultValue": "mi-staging-storage-connection-string"
 		}
 	},
 	"variables": {
@@ -155,8 +135,7 @@
 						"outputs": [
 							{
 								"referenceName": "synapse_payment_bs_envelope_case",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					}
@@ -223,9 +202,7 @@
 					}
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/mi_persistent_storage')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/synapse_payment_bs_envelope_case')]",
@@ -243,115 +220,6 @@
 				"typeProperties": {
 					"schema": "payment",
 					"table": "BulkEnvelopCase"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/MI_synapse_mi')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/MI_synapse_mi')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDW",
-				"typeProperties": {
-					"connectionString": "[parameters('MI_synapse_mi_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/mi_keyvault')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureKeyVault",
-				"typeProperties": {
-					"baseUrl": "[parameters('mi_keyvault_properties_typeProperties_baseUrl')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/mi_persistence_storage_mi')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"serviceEndpoint": "[parameters('mi_persistence_storage_mi_properties_typeProperties_serviceEndpoint')]",
-					"accountKind": "StorageV2"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/mi_persistent_storage')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": {
-						"type": "AzureKeyVaultSecret",
-						"store": {
-							"referenceName": "mi_keyvault",
-							"type": "LinkedServiceReference"
-						},
-						"secretName": "[parameters('mi_persistent_storage_properties_typeProperties_connectionString_secretName')]"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/mi_keyvault')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/mi_synapse_kv')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDW",
-				"typeProperties": {
-					"connectionString": "[parameters('mi_synapse_kv_connectionString')]",
-					"password": {
-						"type": "AzureKeyVaultSecret",
-						"store": {
-							"referenceName": "mi_keyvault",
-							"type": "LinkedServiceReference"
-						},
-						"secretName": "mi-datawarehouse-server-admin-password"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/mi_keyvault')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/CopyCcdDataTrigger')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"type": "TumblingWindowTrigger",
-				"typeProperties": {
-					"frequency": "Hour",
-					"interval": 24,
-					"startTime": "2020-06-08T16:26:00.000Z",
-					"delay": "00:00:00",
-					"maxConcurrency": 50,
-					"retryPolicy": {
-						"intervalInSeconds": 30
-					},
-					"dependsOn": []
 				}
 			},
 			"dependsOn": []
