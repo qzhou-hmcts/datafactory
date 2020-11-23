@@ -5,7 +5,7 @@
 		"annotations": [],
 		"type": "AzureSqlDW",
 		"typeProperties": {
-			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=mi-datawarehouse-server-sbox.database.windows.net;Initial Catalog=mi-datawarehouse-db-sbox"
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=mi-datawarehouse-server-test.database.windows.net;Initial Catalog=mi-datawarehouse-db-test"
 		}
 	}
 }

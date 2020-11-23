@@ -3,18 +3,14 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "MI_synapse_mi",
-			"type": "LinkedServiceReference",
-			"parameters": {
-				"identity": "mi-ccd-datafactory-test",
-				"env": "test"
-			}
+			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "AzureSqlDWTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "STG",
-			"table": "STG_CCD_METADATA"
+			"schema": "data",
+			"table": "change"
 		}
 	}
 }
