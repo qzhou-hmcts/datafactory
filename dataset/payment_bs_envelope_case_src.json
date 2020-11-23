@@ -1,6 +1,7 @@
 {
-	"name": "CcdMetadataSrc",
+	"name": "payment_bs_envelope_case_src",
 	"properties": {
+		"description": "Payment bulk envelope case container",
 		"linkedServiceName": {
 			"referenceName": "mi_persistent_storage",
 			"type": "LinkedServiceReference"
@@ -20,31 +21,31 @@
 					"value": "@dataset().file",
 					"type": "Expression"
 				},
-				"container": "payment-bs-envelope"
+				"container": "payment-bs-envelope-case"
 			}
 		},
 		"schema": {
 			"type": "object",
 			"properties": {
+				"id": {
+					"type": "integer"
+				},
+				"ccd_reference": {
+					"type": "string"
+				},
+				"date_created": {
+					"type": "string"
+				},
+				"exception_record_reference": {
+					"type": "string"
+				},
+				"date_updated": {
+					"type": "string"
+				},
+				"envelope_id": {
+					"type": "integer"
+				},
 				"extraction_date": {
-					"type": "string"
-				},
-				"case_metadata_event_id": {
-					"type": "integer"
-				},
-				"ce_case_data_id": {
-					"type": "integer"
-				},
-				"ce_created_date": {
-					"type": "integer"
-				},
-				"ce_case_type_id": {
-					"type": "string"
-				},
-				"ce_case_type_version": {
-					"type": "integer"
-				},
-				"ce_state_id": {
 					"type": "string"
 				}
 			}
