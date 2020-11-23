@@ -15,8 +15,86 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"enableStaging": false
-				}
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"modifiedDatetimeStart": {
+								"value": "@startOfDay(getPastTime(1,'Week'))",
+								"type": "Expression"
+							},
+							"modifiedDatetimeEnd": {
+								"value": "@utcnow()",
+								"type": "Expression"
+							},
+							"wildcardFileName": "*.jsonl"
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['id']"
+								},
+								"sink": {
+									"name": "id",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "$['date_created']"
+								},
+								"sink": {
+									"name": "date_created",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['date_updated']"
+								},
+								"sink": {
+									"name": "data_updated",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['extraction_date']"
+								},
+								"sink": {
+									"name": "extraction_date",
+									"type": "DateTime"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "payment_bs_envelope_case_src",
+						"type": "DatasetReference",
+						"parameters": {
+							"file": "*"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "synapse_payment_bs_envelope_case",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []
