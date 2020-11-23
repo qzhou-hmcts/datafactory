@@ -1,0 +1,17 @@
+{
+	"name": "synapse_payment_bs_envelope_case",
+	"properties": {
+		"description": "Payment  bs envelope case table on synapse",
+		"linkedServiceName": {
+			"referenceName": "MI_synapse_mi",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "payment",
+			"table": "BulkEnvelopCase"
+		}
+	}
+}
