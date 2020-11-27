@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "copy_payment_bs",
+				"name": "copy_payment_bs_01",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
