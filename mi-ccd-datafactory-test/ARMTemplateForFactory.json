@@ -333,28 +333,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/mi_keyvault')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/CopyCcdDataTrigger')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"type": "TumblingWindowTrigger",
-				"typeProperties": {
-					"frequency": "Hour",
-					"interval": 24,
-					"startTime": "2020-06-08T16:26:00.000Z",
-					"delay": "00:00:00",
-					"maxConcurrency": 50,
-					"retryPolicy": {
-						"intervalInSeconds": 30
-					},
-					"dependsOn": []
-				}
-			},
-			"dependsOn": []
 		}
 	]
 }
