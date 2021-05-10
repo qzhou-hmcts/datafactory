@@ -1,0 +1,124 @@
+{
+	"name": "load_payment_bs_envelope",
+	"properties": {
+		"description": "Pipeline to load payment bulk envelope into synapse analitycs",
+		"activities": [
+			{
+				"name": "copy_payment_bs_envelope",
+				"description": "copy_payment_bs_envelope",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*.jsonl"
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['id']"
+								},
+								"sink": {
+									"name": "id",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ccd_reference']"
+								},
+								"sink": {
+									"name": "ccd_reference",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['date_created']"
+								},
+								"sink": {
+									"name": "date_created",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['exception_record_reference']"
+								},
+								"sink": {
+									"name": "exception_record_reference",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['date_updated']"
+								},
+								"sink": {
+									"name": "data_updated",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['envelope_id']"
+								},
+								"sink": {
+									"name": "envelpe_id",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "$['extraction_date']"
+								},
+								"sink": {
+									"name": "extraction_date",
+									"type": "DateTime"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "paymen_bs_envelope_src",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "synapse_payment",
+						"type": "DatasetReference",
+						"parameters": {
+							"schema": "dbo",
+							"table": "table"
+						}
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}

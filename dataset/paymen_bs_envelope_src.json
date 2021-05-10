@@ -1,0 +1,44 @@
+{
+	"name": "paymen_bs_envelope_src",
+	"properties": {
+		"description": "Staging payment storage account",
+		"linkedServiceName": {
+			"referenceName": "mi_persistent_storage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "payment-bs-envelope-case"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"extraction_date": {
+					"type": "string"
+				},
+				"case_metadata_event_id": {
+					"type": "integer"
+				},
+				"ce_case_data_id": {
+					"type": "integer"
+				},
+				"ce_created_date": {
+					"type": "integer"
+				},
+				"ce_case_type_id": {
+					"type": "string"
+				},
+				"ce_case_type_version": {
+					"type": "integer"
+				},
+				"ce_state_id": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
